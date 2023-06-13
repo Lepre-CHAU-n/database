@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        .user-info-box {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            list-style-type: none; /* Remove bullet points */
+        }
+        ul {
+            list-style-type: none;
+        }
+        body {background-color: white;}
+    </style>
+    <script>
+        function randomizeDivBoxes() {
+            var userInfoBoxes = document.getElementsByClassName('user-info-box');
+            var scalingFactor = 350; // Adjust this value to balance the box size
+            var maxBoxSize = 900; // Maximum box size in pixels
+
+            for (var i = 0; i < userInfoBoxes.length; i++) {
+                var box = userInfoBoxes[i];
+                var userWeight = parseFloat(box.querySelector('.weight').innerText);
+                var userHeight = parseFloat(box.querySelector('.height').innerText);
+                var hairColor = box.querySelector('.hair-color').innerText.toLowerCase(); // Get hair color and convert to lowercase
+
+                // Check if the hair color is valid or gibberish
+                var validColors = ['black', 'brown', 'red', 'gray','blue', 'green','yellow','teal','gold', 'cyan','purple','pink','orange','turquoise','magenta'];
+                
+                if (validColors.includes(hairColor)) {
+                    box.style.backgroundColor = hairColor;
+                } else {
+                    box.style.backgroundColor = 'darkgray'; // Set default gray color for gibberish hair color
+                }
+
+                if (hairColor === 'black') {
+                    box.style.backgroundColor = 'gray'; // Change hair color to dark gray if it is black
+                }
+                
+                var boxWidth = userWeight + scalingFactor * 0.5; // Reduce width by 50%
+                var boxHeight = userHeight + scalingFactor *0.5;
+
+                // Limit box size to a maximum value
+                if (boxWidth > maxBoxSize) {
+                    boxWidth = maxBoxSize;
+                }
+                if (boxHeight > maxBoxSize) {
+                    boxHeight = maxBoxSize;
+                }
+
+                box.style.width = boxWidth + 'px';
+                box.style.height = boxHeight + 'px';
+            }
+        }
+
+      
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            randomizeDivBoxes();
+        });
+    </script>
+</head>
+<body>
+    <main class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-4 d-flex align-items-center justify-content-center mb-4">
+                <ul>
+                    <br />
+                    <h1 class="d-flex align-items-center mb-4">USERS</h1>
+                    <br />
+                    <!-- Loop through the users -->
+                    <li th:each="user:${us}">
+                        <div id="{user.id}" class="user-info-box">
+                            UID: <span th:text="${user.uid}"></span> 
+                            <br />
+                            Name: <span th:text="${user.name}"></span> 
+                            <br />
+                            Weight: <span class="weight" th:text="${user.size}"></span> 
+                            <br />
+                            Height: <span class="height" th:text="${user.height}"></span>
+                            <br />
+                            GPA: <span th:text="${user.gpa}"></span>
+                            <br />
+                            Hair Color: <span class="hair-color" th:text="${user.hairColor}"></span>
+                            <br />
+                            Password: <span th:text="${user.password}"></span>
+                            <br />
+                            <br />
+                        </div>
+                        <div>
+                            <!-- Edit button -->
+                            <!-- <button class="btn btn-secondary" onclick="editUser('{user.uid}')" type="button">Edit</button> -->
+                            <button id=""${user.uid} class="btn btn-secondary" onclick="editUser(this)" type="button">Edit</button>
+                            <!-- Delete button -->
+                            <button id="error-message-{user.id}" class="btn btn-danger" onclick="confirmDelete('{user.id}')" type="button">Delete</button>
+                        </div>
+                        <br />
+                    </li>
+                    <div>
+                        <!-- Add button -->
+                        <button class="btn btn-primary" onclick="location.href='/add.html'" type="button">Add User</button>
+                    </div>
+                    <br />
+                </ul>
+            </div>
+        </div>
+    </main>
+    <script>
+    function confirmDelete(userId) {
+        var errorMessage = document.getElementById('error-message-' + userId);
+        var userInput = prompt("Enter the user ID to delete:");
+        var isDeleted = false;
+        // Check if the user ID is a valid number
+        if (!isNaN(userInput) && userInput.trim() !== '') {
+            var deleteUserId = parseInt(userInput);
+
+            // Perform delete action here
+            fetch('/users/delete/' + deleteUserId, {
+                method: 'DELETE'
+            })
+                .then(function(response) {
+                    console.log("User deleted successfully.");
+                    location.reload(); // Refresh the page after deletion
+                    isDeleted = true;
+                })
+                .catch(function(error) {
+                    console.error("Error deleting user:", error);
+                });
+        } else {
+            alert("You typed in non-numbers! Please try again");
+            return;
+        }
+        if(userInput != userId){
+            alert("This UID doesn't exist in the database! Please try again");
+            return;
+        }
+    }
+
+    function editUser(uid) {
+        let userInputs = prompt("Enter the UID to edit:");
+  
+        // Check if the UID is a valid number
+        if (!isNaN(userInputs) && userInputs.trim() !== '') {
+            var editUid = parseInt(userInputs);
+      
+            // Redirect to showUser.html with the provided UID
+            window.location.href = "/edit.html/uid=" + editUid;
+        } else {
+            alert("You typed in non-numbers! Please try again");
+            return;
+        }
+        // if(uid != userInputs){
+        //     alert("This UID doesn't exist in the database! Please try again");
+        //     return;
+        // }
+    }
+
+    </script>
+</body>
+</html>
