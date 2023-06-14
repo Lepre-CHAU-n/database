@@ -113,13 +113,13 @@
 
             var isValid = true;
 
-            if (parseFloat(size) < 1) {
-                document.getElementById("sizeError").textContent = "Weight must be greater than or equal to 1";
+            if (parseFloat(size) < 1||parseFloat(size) > 600) {
+                document.getElementById("sizeError").textContent = "Weight must be greater than/equal to 1, or lesser than/equal to 600";
                 isValid = false;
             }
 
-            if (parseFloat(height) < 1) {
-                document.getElementById("heightError").textContent = "Height must be greater than or equal to 1";
+            if (parseFloat(height) < 1||parseFloat(height) >600) {
+                document.getElementById("heightError").textContent = "Height must be greater than/equal to 1, or lesser than/equal to 600";
                 isValid = false;
             }
             
