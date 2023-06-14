@@ -1,4 +1,4 @@
-#student-database
+
 Here are the valid colors you can input for the hair. If the color is black make it a lighter gray since black is too dark. If the color is not in any of the valid hair colors it appears gray. 
 <img width="978" alt="image" src="https://github.com/Lepre-CHAU-n/database/assets/71118130/7f82164a-0d80-4cd1-b07b-f6e590e31b21">
 
