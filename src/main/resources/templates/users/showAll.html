@@ -65,6 +65,27 @@
         document.addEventListener("DOMContentLoaded", function() {
             randomizeDivBoxes();
         });
+
+
+        function editUser(uid) {
+        let userInputs = prompt("Enter the UID to edit:");
+  
+        // Check if the UID is a valid number
+        if (!isNaN(userInputs) && userInputs.trim() !== '') {
+            var editUid = parseInt(userInputs);
+      
+            // Redirect to showUser.html with the provided UID
+            window.location.href = "/users/edit/" + editUid;
+        } else {
+            alert("You typed in non-numbers! Please try again");
+            return;
+        }
+        // if(uid != userInputs){
+        //     alert("This UID doesn't exist in the database! Please try again");
+        //     return;
+        // }
+        }
+
     </script>
 </head>
 <body>
@@ -96,8 +117,7 @@
                         </div>
                         <div>
                             <!-- Edit button -->
-                            <!-- <button class="btn btn-secondary" onclick="editUser('{user.uid}')" type="button">Edit</button> -->
-                            <button id=""${user.uid} class="btn btn-secondary" onclick="editUser(this)" type="button">Edit</button>
+                            <button class="btn btn-secondary" onclick="editUser('${user.id}')"  type="button">Edit</button>
                             <!-- Delete button -->
                             <button id="error-message-{user.id}" class="btn btn-danger" onclick="confirmDelete('{user.id}')" type="button">Delete</button>
                         </div>
@@ -141,25 +161,6 @@
             alert("This UID doesn't exist in the database! Please try again");
             return;
         }
-    }
-
-    function editUser(uid) {
-        let userInputs = prompt("Enter the UID to edit:");
-  
-        // Check if the UID is a valid number
-        if (!isNaN(userInputs) && userInputs.trim() !== '') {
-            var editUid = parseInt(userInputs);
-      
-            // Redirect to showUser.html with the provided UID
-            window.location.href = "/edit.html/uid=" + editUid;
-        } else {
-            alert("You typed in non-numbers! Please try again");
-            return;
-        }
-        // if(uid != userInputs){
-        //     alert("This UID doesn't exist in the database! Please try again");
-        //     return;
-        // }
     }
 
     </script>
