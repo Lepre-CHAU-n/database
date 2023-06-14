@@ -86,7 +86,7 @@ public class UsersController {
         User user = userRepo.findById(id).orElse(null);
         if (user == null) {
             // Handle the case when the user with the specified ID does not exist
-            return "error"; // You can create an error page or redirect to an appropriate view
+            return "error"; // You can create an error page or redirect to an appropriate vieww
         }
         model.addAttribute("user", user);
         return "users/edit";
