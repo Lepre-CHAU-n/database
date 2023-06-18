@@ -3,6 +3,9 @@ Here are the valid colors you can input for the hair. If the color is black make
 <img width="874" alt="image" src="https://github.com/Lepre-CHAU-n/database/assets/71118130/47c1d21e-1b50-478d-bafa-c3754e045b42">
 
 Here is how you add a new user:
+
+
+
 <img width="713" alt="image" src="https://github.com/Lepre-CHAU-n/database/assets/71118130/9f30c2cd-d99f-4b77-9ec8-1d26fd9a8221">
 
 
