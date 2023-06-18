@@ -9,6 +9,9 @@ Here is how you add a new user:
 <img width="713" alt="image" src="https://github.com/Lepre-CHAU-n/database/assets/71118130/9f30c2cd-d99f-4b77-9ec8-1d26fd9a8221">
 
 
+
+
+
 <img width="449" alt="image" src="https://github.com/Lepre-CHAU-n/database/assets/71118130/4bc92761-af74-48d6-8099-4dfed31d0e1b">
 
 
