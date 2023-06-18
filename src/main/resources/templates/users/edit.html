@@ -65,6 +65,9 @@
                     </div>
                     <form action="/users/edit" method="post" th:object="${user}" onsubmit="return validateForm()" >
                         <div class="mb-3">
+                            <input type="text" id="uid" name="uid" class="form-control" th:field="*{uid}" readonly="readonly">
+                        </div>
+                        <div class="mb-3">
                             <input type="text" id="name" name="name" class="form-control" th:field="*{name}" placeholder="Name" required>
                         </div>
                         <div class="mb-3">
@@ -85,10 +88,11 @@
                             <input type="number" step="0.01" id="gpa" name="gpa" class="form-control"  th:field="*{gpa}" placeholder="GPA" required>
                             <div id="gpaError" class="error-message"></div>
                         </div>
-                        
+                    <!-- <form action="/users/edits" method="post"> -->
                         <!-- Submit button -->
                         <div class="d-grid gap-2">
                             <input class="btn btn-primary" type="submit" value="SEND">
+                            
                         </div>
                     </form>
                     <!-- Back button -->
@@ -113,13 +117,13 @@
 
             var isValid = true;
 
-            if (parseFloat(size) < 1) {
-                document.getElementById("sizeError").textContent = "Weight must be greater than or equal to 1";
+            if (parseFloat(size) < 1||parseFloat(size) > 600) {
+                document.getElementById("sizeError").textContent = "Weight must be greater than/equal to 1 and less than/equal to 600";
                 isValid = false;
             }
 
-            if (parseFloat(height) < 1) {
-                document.getElementById("heightError").textContent = "Height must be greater than or equal to 1";
+            if (parseFloat(height) < 1||parseFloat(height) > 600) {
+                document.getElementById("heightError").textContent = "Height must be greater than/equal to 1 and less than/equal to 600";
                 isValid = false;
             }
             
