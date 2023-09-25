@@ -1,4 +1,4 @@
-The link to the assignment: https://assignmenttwo-9wet.onrender.com/users/view
+
 Here are the valid colors you can input for the hair. If the color is black make it a lighter gray since black is too dark. If the color is not in any of the valid hair colors it appears gray. 
 <img width="874" alt="image" src="https://github.com/Lepre-CHAU-n/database/assets/71118130/47c1d21e-1b50-478d-bafa-c3754e045b42">
 
